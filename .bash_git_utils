@@ -1,0 +1,53 @@
+#!/bin/bash
+
+git_all() {
+	# store the current dir
+	CUR_DIR=$(pwd)
+	
+	# Find all git repositories
+	for i in $(find . -maxdepth 3 -type d -name ".git" | cut -c 3-); do
+		# We have to go to the .git parent directory to call the command
+		cd "$i";
+		cd ..;
+	
+		# Echo repo name and current branch
+		echo "";
+		echo -e "\033[33m"$(echo $i | cut -d'/' -f1)"\033[0m | \033[36m"$(git rev-parse --abbrev-ref HEAD)"\033[0m\n";
+
+		# finally call git command
+		for j in "$@"; do
+			git $j;
+		done
+
+		# lets get back to the CUR_DIR
+		cd $CUR_DIR
+	done
+
+	echo -e "\n\033[32mComplete!\033[0m\n"
+}
+
+pullall() {
+	echo -e "\n\033[1mPulling in latest changes for all repos...\033[0m\n"
+	git_all pull
+}
+
+diffall() {
+	echo -e "\n\033[1mChecking all repos for code changes...\033[0m\n"
+	git_all "diff --stat"
+}
+
+revertall() {
+	echo -e "\n\033[1mReverting changes in all repos...\033[0m\n"
+	git_all "reset ." "checkout ." pull
+}
+
+gpush() {
+	CUR_BRANCH=$(git rev-parse --abbrev-ref HEAD);
+	git push origin $CUR_BRANCH;
+}
+
+gpsu() {
+	CUR_BRANCH=$(git rev-parse --abbrev-ref HEAD);
+	git push -u origin $CUR_BRANCH;
+}
+
