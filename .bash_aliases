@@ -50,9 +50,6 @@ alias notepad++="start notepad++";
 alias cdgit="cd C:/git";
 alias cdibm="cd C:/IBM";
 alias cdwlp="cd C:/IBM/wlp";
-alias cdfe="cd *FEDEV || cd *FEDev";
-alias tstlogs="start C:/IBM/WAS85/profiles/RISTest_Java8/logs";
-alias pltlogs="start C:/IBM/WAS85/profiles/RISPilot_Java8/logs";
 
 ### MISC ###
 alias ihavetoleave="python -u ~/i_have_to_leave.py";
