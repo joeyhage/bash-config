@@ -13,7 +13,6 @@ alias msbr="mvn spring-boot:run";
 ### GIT ###
 alias ga="git add . && git status";
 alias gaj="git add **/*java && git status";
-alias gafe="git add '*FEDEV/**/*' && git status";
 alias gst="git status";
 alias gc="gst && echo -e '\nPress enter to confirm\n' && read DUMMY && git commit -m";
 alias gamnd="git commit --amend --no-edit";
